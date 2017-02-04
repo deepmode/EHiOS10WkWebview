@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -29,28 +29,46 @@
                                         <rect key="frame" x="0.0" y="28" width="355" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8dx-SU-kIe" id="XlJ-Fm-VQ9">
-                                            <rect key="frame" x="0.0" y="0.0" width="355" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="355" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B8d-5m-GY0">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="LaG-pg-QMj">
+                                        <rect key="frame" x="177" y="313" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="LaG-pg-QMj" firstAttribute="centerX" secondItem="B8d-5m-GY0" secondAttribute="centerX" id="CDL-0d-lxv"/>
+                                    <constraint firstItem="LaG-pg-QMj" firstAttribute="centerY" secondItem="B8d-5m-GY0" secondAttribute="centerY" constant="-10.5" id="vfE-H3-tRt"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="bBk-MA-ejj" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="16C-9v-yYe"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="B8d-5m-GY0" secondAttribute="bottom" id="2JE-BT-gh5"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="bBk-MA-ejj" secondAttribute="bottom" constant="10" id="Ghp-Lf-VB0"/>
+                            <constraint firstAttribute="trailing" secondItem="B8d-5m-GY0" secondAttribute="trailing" id="TjK-b7-edg"/>
                             <constraint firstItem="bBk-MA-ejj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="cts-9g-N4D"/>
+                            <constraint firstItem="B8d-5m-GY0" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="h9G-Zf-9ni"/>
+                            <constraint firstItem="B8d-5m-GY0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="onj-9T-1Cb"/>
                             <constraint firstAttribute="trailing" secondItem="bBk-MA-ejj" secondAttribute="trailing" constant="10" id="u88-32-E8T"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loadingBaseView" destination="B8d-5m-GY0" id="gVe-l1-1Bh"/>
                         <outlet property="tableView" destination="bBk-MA-ejj" id="gml-RE-Ynv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-278" y="-456"/>
+            <point key="canvasLocation" x="-279.19999999999999" y="-456.52173913043481"/>
         </scene>
     </scenes>
 </document>
