@@ -110,6 +110,7 @@ class ViewController: UIViewController {
     
     //MARK: KVO --
     //fileprivate var kObservingContentSizeChangesContext = UnsafeRawPointer(nil)
+    //http://stackoverflow.com/questions/24175626/adding-observer-for-kvo-without-pointers-using-swift
     fileprivate var kObservingContentSizeChangesContext = 0
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
