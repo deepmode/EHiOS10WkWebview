@@ -73,7 +73,7 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
+        if indexPath.row == 1 {
             return self.webContentHeight + self.topPadding + self.bottomPadding
         }
         
@@ -90,13 +90,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
    
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row != 0 {
+        if indexPath.row != 1 {
             let cell = UITableViewCell(style: .default, reuseIdentifier: "cell_default")
             cell.backgroundColor = UIColor.red
             return cell
         }
         
-        if indexPath.row == 0 {
+        if indexPath.row == 1 {
             if self.webContentCell == nil {
                 print("----- setup wkwebview ------")
                 self.webContentCell = tableView.dequeueReusableCell(withIdentifier: "Cell_Web", for: indexPath)
@@ -137,8 +137,21 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         self.webView.loadHTMLString(self.finalHTML, baseURL: URL(string:"http://www.hypebeast.com"))
     }
     
+    
+    internal func printWebContentCellFrame() {
+        print("webContentCell frame: \(self.webContentCell?.frame)")
+    }
+    
+    internal func printContentViewFrame() {
+        print("contentView frame: \(self.webContentCell?.contentView.frame)")
+    }
+    
     internal func printWebviewFrame() {
         print("webview frame: \(self.webView?.frame)")
+    }
+    
+    internal func printWebviewContentSize() {
+        print("webview scrollview contentSize: \(self.webView?.scrollView.contentSize)")
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -225,14 +238,24 @@ extension ViewController: WKNavigationDelegate {
                     self?.printWebviewFrame()
                     if self?.webView.frame.size.height != h {
                         print("C")
+                        self?.webContentCell?.frame.size.height = h
                         self?.webView.frame.size.height = h
                         self?.webContentHeight = h
                         self?.printWebviewFrame()
                         DispatchQueue.main.async { () -> Void in
                             print("D")
+                            
+                            self?.printWebContentCellFrame()
+                            self?.printContentViewFrame()
+                            self?.printWebviewContentSize()
+                            
                             self?.tableView.reloadData()
+//                            let tableViewCellIndexPath = IndexPath(row: 1, section: 0)
+//                            self?.tableView.reloadRows(at: [tableViewCellIndexPath], with: UITableViewRowAnimation.none)
                             print("D end")
                         }
+                    } else {
+                        print("opps")
                     }
                 }
             }
