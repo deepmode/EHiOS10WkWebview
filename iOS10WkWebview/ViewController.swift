@@ -18,10 +18,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var loadingBaseView: UIView!
     var webView:WKWebView!
     
-    private var topPaddingConstraint:NSLayoutConstraint!
-    private var bottomPaddingConstraint:NSLayoutConstraint!
-    private var leadingPaddingConstraint:NSLayoutConstraint!
-    private var trailingPaddingConstraint:NSLayoutConstraint!
+//    private var topPaddingConstraint:NSLayoutConstraint!
+//    private var bottomPaddingConstraint:NSLayoutConstraint!
+//    private var leadingPaddingConstraint:NSLayoutConstraint!
+//    private var trailingPaddingConstraint:NSLayoutConstraint!
     
     let fallBackLink = "https://hypebeast.com/2017/1/yeezy-boost-350-v2-black-red-official-store-list-384"
     
@@ -68,14 +68,14 @@ class ViewController: UIViewController {
             default:
                 content = content0
         }
-        return content3
-        //return "\(begin)\(content)\(dummyImage)\(end)"
+        //return content3
+        return "\(begin)\(content)\(dummyImage)\(end)"
     }
     
-    let topPadding:CGFloat = 0.0
-    let bottomPadding:CGFloat = 0.0
-    let leadingPadding:CGFloat = 0.0
-    let trailingPadding:CGFloat = 0.0
+    let topPadding:CGFloat = 10.0
+    let bottomPadding:CGFloat = 10.0
+    let leadingPadding:CGFloat = 10.0
+    let trailingPadding:CGFloat = 10.0
     
     var isAddedWKWebview = false
     
@@ -120,18 +120,21 @@ class ViewController: UIViewController {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
         if context == &kObservingContentSizeChangesContext {
-            print ("changing height: \(self.webView?.scrollView.contentSize.height)")
+            
             if let currentHeight = self.webView?.scrollView.contentSize.height {
-                
+
                 //check if height has changed, do a reload
                 if self.lastSavedHeight != currentHeight {
-                
+                    print ("webview scrollView content size: \(self.webView?.scrollView.contentSize) - height change -> reload")
+                    print ("webview size: \(self.webView?.frame.size) - height change -> reload")
                     self.lastSavedHeight = currentHeight
                     self.webView.frame.size.height = currentHeight
                     self.webContentHeight = currentHeight
                     
-                    print("height change -> reload")
                     self.needReload()
+                } else {
+                    print ("webview scrollView content size: \(self.webView?.scrollView.contentSize)")
+                    print ("webview size: \(self.webView?.frame.size)")
                 }
             }
             
@@ -291,12 +294,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             print("Y")
             
             self?.printWebviewFrame()
-            //################
-            //note: important to set this
-            if let weakSelf = self {
-                weakSelf.webContentHeight = weakSelf.defaultWebContentHeight
-            }
-            //################
+//            //################
+//            //note: important to set this
+//            if let weakSelf = self {
+//                weakSelf.webContentHeight = weakSelf.defaultWebContentHeight
+//            }
+//            //################
             
         }) { [weak self] (context) in
             
