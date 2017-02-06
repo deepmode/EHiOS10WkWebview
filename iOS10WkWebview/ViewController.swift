@@ -239,7 +239,15 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     internal func hideLoadingView() {
-        self.loadingBaseView.isHidden = true
+        
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: UIViewAnimationOptions.curveLinear, animations: { [weak self] in
+            self?.loadingBaseView.alpha = 0.0
+        }) { [weak self] (completionState) in
+            
+            self?.loadingBaseView.isHidden = true
+            self?.loadingBaseView.alpha = 1.0
+        }
+        //self.loadingBaseView.isHidden = true
     }
     
     
@@ -287,8 +295,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             //################
             
         }) { [weak self] (context) in
-            let tableViewCellIndexPath = IndexPath(row: 1, section: 0)
-            self?.tableView.scrollToRow(at: tableViewCellIndexPath, at: UITableViewScrollPosition.top, animated: true)
+            
             
             if let weakSelf = self {
                 print("Z")
@@ -302,7 +309,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 weakSelf.needReload()
                 print("Y end")
             }
-            self?.hideLoadingView()
+            
+            let tableViewCellIndexPath = IndexPath(row: 1, section: 0)
+            self?.tableView.scrollToRow(at: tableViewCellIndexPath, at: UITableViewScrollPosition.top, animated: true)
+            
+            //self?.hideLoadingView()
             
         }
     }
